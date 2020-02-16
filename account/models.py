@@ -3,13 +3,16 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 # Create your models here.
 
 class Manager(BaseUserManager):
-	def create_user(self,email,username,password=None):
+	def create_user(self,first_name,email,username,password=None):
 		if not email:
 			raise ValueError("Not Email")
 		if not username:
 			raise ValueError("Not Username")
+		if not first_name:
+			raise ValueError("Not first_name")
 
 		user = self.model(
+				first_name = first_name,
 				email = self.normalize_email(email),
 				username = username,
 			)
@@ -22,6 +25,7 @@ class Manager(BaseUserManager):
 		user = self.create_user(
 				email = self.normalize_email(email),
 				username = username,
+				# first_name = first_name,
 				password = password,
 			)
 
@@ -34,6 +38,7 @@ class Manager(BaseUserManager):
 class Person(AbstractBaseUser):
 	email = models.EmailField(verbose_name='email', max_length=100, unique=True)
 	username = models.CharField(max_length=30, unique=True)
+	first_name = models.CharField(max_length=30, unique=False)
 	date_joined = models.DateTimeField(verbose_name='date joined', auto_now_add=True)
 	last_login = models.DateTimeField(verbose_name='last_login', auto_now_add=True)
 	is_admin = models.BooleanField(default=False)
@@ -43,8 +48,8 @@ class Person(AbstractBaseUser):
 	is_mitra = models.BooleanField(default=False)
 	is_customer = models.BooleanField(default=False)
 
-	USERNAME_FIELD = 'email'
-	REQUIRED_FIELDS = ['username']
+	USERNAME_FIELD = 'username'
+	REQUIRED_FIELDS = ['email','first_name']
 
 	objects = Manager()
 

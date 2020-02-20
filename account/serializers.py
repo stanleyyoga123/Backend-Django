@@ -11,7 +11,9 @@ class UserSerializer(serializers.ModelSerializer):
 			'password', 
 			'date_joined', 
 			'last_login', 
-			'first_name'
+			'first_name',
+			'is_mitra',
+			'is_customer'
 			)
 
 	def create(self, validated_data):

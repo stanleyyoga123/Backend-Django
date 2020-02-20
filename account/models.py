@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 # Create your models here.
 
 class Manager(BaseUserManager):
-	def create_user(self,first_name,email,username,password=None):
+	def create_user(self,first_name,is_mitra,is_customer,email,username,password=None):
 		if not email:
 			raise ValueError("Not Email")
 		if not username:
@@ -12,11 +12,12 @@ class Manager(BaseUserManager):
 			raise ValueError("Not first_name")
 
 		user = self.model(
-				first_name = first_name,
 				email = self.normalize_email(email),
+				first_name = first_name,
 				username = username,
+				is_mitra = is_mitra,
+				is_customer = is_customer,
 			)
-
 		user.set_password(password)
 		user.save(using=self._db)
 		return user
@@ -25,7 +26,6 @@ class Manager(BaseUserManager):
 		user = self.create_user(
 				email = self.normalize_email(email),
 				username = username,
-				# first_name = first_name,
 				password = password,
 			)
 
@@ -49,7 +49,7 @@ class Person(AbstractBaseUser):
 	is_customer = models.BooleanField(default=False)
 
 	USERNAME_FIELD = 'username'
-	REQUIRED_FIELDS = ['email','first_name']
+	REQUIRED_FIELDS = ['email','is_mitra','is_customer']
 
 	objects = Manager()
 

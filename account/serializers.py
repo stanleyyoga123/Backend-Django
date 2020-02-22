@@ -7,7 +7,7 @@ class UserSerializer(serializers.ModelSerializer):
 		model = Person
 		fields = (
 			'username', 
-			'email', 
+			'no_hp', 
 			'password', 
 			'date_joined', 
 			'last_login', 

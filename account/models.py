@@ -3,16 +3,16 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 # Create your models here.
 
 class Manager(BaseUserManager):
-	def create_user(self,first_name,is_mitra,is_customer,email,username,password=None):
-		if not email:
-			raise ValueError("Not Email")
+	def create_user(self,first_name,is_mitra,is_customer,no_hp,username,password=None):
+		if not no_hp:
+			raise ValueError("Not no_hp")
 		if not username:
 			raise ValueError("Not Username")
 		if not first_name:
 			raise ValueError("Not first_name")
 
 		user = self.model(
-				email = self.normalize_email(email),
+				no_hp = no_hp,
 				first_name = first_name,
 				username = username,
 				is_mitra = is_mitra,
@@ -22,13 +22,15 @@ class Manager(BaseUserManager):
 		user.save(using=self._db)
 		return user
 
-	def create_superuser(self,email,username,password):
+	def create_superuser(self,no_hp,username,password):
 		user = self.create_user(
-				email = self.normalize_email(email),
+				first_name = 'SUPERUSER',
+				is_mitra = False,
+				is_customer = False,
+				no_hp = no_hp,
 				username = username,
 				password = password,
 			)
-
 		user.is_admin = True
 		user.is_staff = True
 		user.is_superuser = True
@@ -36,7 +38,7 @@ class Manager(BaseUserManager):
 		return user
 
 class Person(AbstractBaseUser):
-	email = models.EmailField(verbose_name='email', max_length=100, unique=True)
+	no_hp = models.BigIntegerField(unique=True)
 	username = models.CharField(max_length=30, unique=True)
 	first_name = models.CharField(max_length=30, unique=False)
 	date_joined = models.DateTimeField(verbose_name='date joined', auto_now_add=True)
@@ -49,12 +51,12 @@ class Person(AbstractBaseUser):
 	is_customer = models.BooleanField(default=False)
 
 	USERNAME_FIELD = 'username'
-	REQUIRED_FIELDS = ['email','is_mitra','is_customer']
+	REQUIRED_FIELDS = ['no_hp']
 
 	objects = Manager()
 
 	def __str__(self):
-		return self.email
+		return self.username
 
 	def has_perm(self,perm,obj=None):
 		return self.is_admin

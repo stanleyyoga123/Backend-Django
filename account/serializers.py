@@ -12,8 +12,7 @@ class UserSerializer(serializers.ModelSerializer):
 			'date_joined', 
 			'last_login', 
 			'first_name',
-			'is_mitra',
-			'is_customer'
+			'alamat',
 			)
 
 	def create(self, validated_data):

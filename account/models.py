@@ -50,7 +50,7 @@ class Person(AbstractBaseUser):
 	is_superuser = models.BooleanField(default=False)
 
 	USERNAME_FIELD = 'username'
-	REQUIRED_FIELDS = ['no_hp','alamat']
+	REQUIRED_FIELDS = ['no_hp']
 
 	objects = Manager()
 

@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class Order(models.Model):
+class Collected(models.Model):
 	collected_trash_paper = models.FloatField(default=0)
 	collected_trash_food = models.FloatField(default=0)
 	collected_trash_plastic = models.FloatField(default=0)
@@ -16,7 +16,7 @@ class Order(models.Model):
 
 		return sum
 
-	def create_order(self,collected_trash_paper,collected_trash_plastic,collected_trash_food,user):
+	def create_collected(self,collected_trash_paper,collected_trash_plastic,collected_trash_food,user):
 		if not collected_trash_food:
 			raise ValueError("Not Food")
 		if not collected_trash_plastic:

@@ -1,9 +1,9 @@
 from rest_framework import serializers
-from .models import Order
+from .models import Collected
 
-class OrderSerializer(serializers.ModelSerializer):
+class CollectedSerializer(serializers.ModelSerializer):
 	class Meta:
-		model = Order
+		model = Collected
 		fields = (
 			'collected_trash_paper', 
 			'collected_trash_food', 

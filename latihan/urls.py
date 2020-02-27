@@ -21,5 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('account.urls')),
     path('', include('tukang_sampah.urls')),
+    path('', include('order.urls')),
     path('auth/', obtain_auth_token)
 ]

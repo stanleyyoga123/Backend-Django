@@ -37,8 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    #Apps
     'account',
     'tukang_sampah',
+    'order',
+
+    #Rest
     'rest_framework',
     'rest_framework.authtoken',
 ]

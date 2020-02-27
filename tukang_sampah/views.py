@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from .models import Order
-from .serializers import OrderSerializer
+from .models import Collected
+from .serializers import CollectedSerializer
 
 # Create your views here.
-class ListOrder(viewsets.ModelViewSet):
-	queryset = Order.objects.all()
-	serializer_class = OrderSerializer
+class ListCollected(viewsets.ModelViewSet):
+	queryset = Collected.objects.all()
+	serializer_class = CollectedSerializer

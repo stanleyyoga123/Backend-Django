@@ -1,1 +1,1 @@
-web: gunicorn latihan.wsgi--log-file -
+web: gunicorn latihan.wsgi --log-file -

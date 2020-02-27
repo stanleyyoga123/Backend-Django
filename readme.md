@@ -11,7 +11,7 @@ python manage.py makemigrations
 python manage.py migrate --run-syncdb
 ```
 
-### Run the Server
+### Run Local Server
 ```bash
 python manage.py runserver
 ```
@@ -19,9 +19,27 @@ python manage.py runserver
 ### Get Users Data
 You can use postman to get data by send GET request
 ```bash
-localhost/users/
+{url}/users/
 ```
-Where localhost is your local server
+Where url is from heroku
 
 ### Post Users Data
-On the postman, you can change into the POST method and fill the body with username, no_hp, password, first_name, and alamat
+POST method and fill the body with username, no_hp, password, first_name, and alamat
+
+### Get Orders Data
+```bash
+{url}/orders/
+```
+
+### Post Orders Data
+POST method and fill the body with order_trash_paper, order_trash_food, order_trash_plastic, user
+default value of order_trash_paper, order_trash_food, order_trash_plastic are 0
+
+### Get Collected Data
+```bash
+{url}/orders/
+```
+
+### Post Collected Data
+Post method and fill the body with collected_trash_paper, collected_trash_food, collected_trash_plastic, user (foreign key from user)
+default value of collected_trash_food, collected_trash_plastic, collected_trash_paper are 0

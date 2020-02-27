@@ -8,7 +8,7 @@ venv\Scripts\activate
 Simply just run this command with the virtual environment activated
 ```bash
 python manage.py makemigrations
-python manage.py migrate
+python manage.py migrate --run-syncdb
 ```
 
 ### Run the Server
@@ -24,4 +24,4 @@ localhost/users/
 Where localhost is your local server
 
 ### Post Users Data
-On the postman, you can change into the POST method and fill the body with username, email, and password
+On the postman, you can change into the POST method and fill the body with username, no_hp, password, first_name, and alamat

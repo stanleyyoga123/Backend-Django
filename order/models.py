@@ -9,11 +9,7 @@ class Order(models.Model):
 	user = models.ForeignKey(Person, on_delete = models.CASCADE)
 	is_taken = models.BooleanField(default=False)
 
-	def change_taken(self, user):
-		order = Order.objects.get(user = user)
-		order.is_taken = True
-		order.save()
-
+		
 	def create_order(self, order_trash_paper, order_trash_food, order_trash_plastic, user):
 		if not order_trash_plastic:
 			raise ValueError('Not plastic')

@@ -9,7 +9,7 @@ class Collected(models.Model):
 
 	def sum_collected_trash(self, user_now):
 		sum = 0
-		collect = Order.objects.filter(user=user_now)
+		collect = collected.objects.filter(user=user_now)
 		
 		for collected in collect:
 			sum += collected.collected_trash_paper + collected.collected_trash_food + collected.collected_trash_plastic

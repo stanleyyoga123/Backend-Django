@@ -1,4 +1,5 @@
 from django.db import models
+from django import forms
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 # Create your models here.
 
@@ -19,6 +20,7 @@ class Manager(BaseUserManager):
 				username = username,
 				alamat = alamat,
 			)
+		user.is_user = True
 		user.set_password(password)
 		user.save(using=self._db)
 		return user
@@ -31,6 +33,7 @@ class Manager(BaseUserManager):
 				username = username,
 				password = password,
 			)
+		user.is_user = True
 		user.is_admin = True
 		user.is_staff = True
 		user.is_superuser = True
@@ -48,6 +51,7 @@ class Person(AbstractBaseUser):
 	is_active = models.BooleanField(default=True)
 	is_staff = models.BooleanField(default=True)
 	is_superuser = models.BooleanField(default=False)
+	is_user = models.BooleanField(default=True)
 
 	USERNAME_FIELD = 'username'
 	REQUIRED_FIELDS = ['no_hp']
